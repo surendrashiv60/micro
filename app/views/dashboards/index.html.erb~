@@ -1,0 +1,116 @@
+<h3><i class="fa fa-tachometer"></i>&nbsp;Dashboard</h3>
+<hr/>
+<div class="row-fluid">
+	<div class="span12">
+		<% if has_permission(users, list) %>
+		<div class="thumbnail">
+			<center>
+			<i class="fa fa-user"></i><br/>
+			<a href="<%= users_path %>">Users</a>
+			</center>
+		</div>
+		<% end %>
+		<% if has_permission(roles, list) %>
+		<div class="thumbnail">
+			<center>
+			<i class="fa fa-male"></i><i class="fa fa-female"></i><br/>
+			<a href="<%= roles_path %>">Roles</a>
+			</center>
+		</div>
+		<% end %>
+		<% if has_permission(groups, list) %>
+		<div class="thumbnail">
+			<center>
+			<i class="fa fa-users"></i><br/>
+			<a href="<%= groups_path %>">Groups</a>
+			</center>
+		</div>
+		<% end %>
+		<% if has_permission(privileges, list) %>
+		<div class="thumbnail">
+			<center>
+			<i class="fa fa-check-square-o"></i><br/>
+			<a href="<%= privileges_path %>">Privileges</a>
+			</center>
+		</div>
+		<% end %>
+		<% if has_permission(system_modules, list) %>
+		<div class="thumbnail">
+			<center>
+			<i class="fa fa-cogs"></i><br/>
+			<a href="<%= system_modules_path %>">System modules</a>
+			</center>
+		</div>
+		<% end %>
+		<% if has_permission(contact_groups, list) %>
+		<div class="thumbnail">
+			<center>
+			<i class="fa fa-sort-alpha-asc"></i><br/>
+			<a href="<%= contact_groups_path %>">Contact groups</a>
+			</center>
+		</div>
+		<% end %>
+		<% if has_permission(contacts, list) %>
+		<div class="thumbnail">
+			<center>
+			<i class="fa fa-font"></i><br/>
+			<a href="<%= contacts_path %>">Contacts</a>
+			</center>
+		</div>
+		<% end %>
+		<% if has_permission(sms_templates, list) %>
+		<div class="thumbnail">
+			<center>
+			<i class="fa fa-file-text"></i><br/>
+			<a href="<%= sms_templates_path %>">SMS templates</a>
+			</center>
+		</div>
+		<% end %>
+		<% if has_permission(compose_sms, list) %>
+		<div class="thumbnail">
+			<center>
+			<i class="fa fa-pencil-square"></i><br/>
+			<a href="<%= compose_sms_new_path %>">Compose sms</a>
+			</center>
+		</div>
+		<% end %>
+		<% if has_permission(compose_email, list) %>
+		<div class="thumbnail">
+			<center>
+			<i class="fa fa-pencil-square-o"></i><br/>
+			<a href="<%= compose_email_new_path %>">Compose email</a>
+			</center>
+		</div>
+		<% end %>
+		<% if has_permission(set_reminders, list) %>
+		<div class="thumbnail">
+			<center>
+			<i class="fa fa-clock-o"></i><br/>
+			<a href="<%= reminders_path %>">Set reminder</a>
+			</center>
+		</div>
+		<% end %>
+		<% if has_permission(reports, list) %>
+		<div class="thumbnail">
+			<center>
+			<i class="fa fa-files-o"></i><br/>
+			<a href="<%= reports_index_path %>">Report</a>
+			</center>
+		</div>
+		<% end %>
+		<% if has_permission(graphs, list) %>
+		<div class="thumbnail">
+			<center>
+			<i class="fa fa-bar-chart-o"></i><br/>
+			<a href="<%= graphs_index_path %>">Graphs</a>
+			</center>
+		</div>
+		<% end %>
+		<div class="thumbnail">
+			<center>
+			<i class="fa fa-power-off"></i><br/>
+			<a href="<%= log_out_path %>">Logout</a>
+			</center>
+		</div>
+	</div>
+</div>

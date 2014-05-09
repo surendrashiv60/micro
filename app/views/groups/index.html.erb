@@ -1,0 +1,38 @@
+<h3><i class="fa fa-users"></i>&nbsp;List groups</h3>
+<hr/>
+<div class="row-fluid">
+        <div class="span8">
+		<table class="table table-bordered">
+			  <tr>
+			    <th>Sr. No.</th>
+			    <th>Group name</th>
+			    <th>Group description</th>
+			    <th>Is active</th>
+			    <th>Action</th>
+			  </tr>
+                        <% @count = 0 %>
+			<% @groups.each do |group| %>
+			  <tr>
+		            <td><%= @count += 1 %></td>
+			    <td><%= group.group_name %></td>
+			    <td><%= group.group_description %></td>
+			    <td><%= group.is_active %></td>
+			    <td><%#= link_to 'Show', group %>
+			    <% if has_permission('groups', 'edit') %>
+			    	<%= link_to 'Edit', edit_group_path(group) %>
+			    <% end %>
+			    <% if has_permission('groups', 'destroy') %>
+			    	<%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			    <% end %>
+			  </tr>
+			<% end %>
+	         </table>
+		 <br/>
+            	 <% if has_permission('groups', 'new') %>
+		 	<%= link_to 'New Group', new_group_path, :class => "btn btn-primary" %>
+	         <% end %>
+		 <%= link_to 'Back', dashboards_path, :class => "btn" %>
+	</div>
+	<div class="span4">
+	</div>
+</div>

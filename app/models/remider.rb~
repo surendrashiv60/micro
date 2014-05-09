@@ -1,0 +1,4 @@
+class Remider < ActiveRecord::Base
+  attr_accessible :at_date, :at_time, :description, :message, :recurrence, :title
+  has_many :schedule_contacts
+end

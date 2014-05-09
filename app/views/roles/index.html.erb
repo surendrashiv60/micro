@@ -1,0 +1,38 @@
+<h3><i class="fa fa-male"></i>&nbsp;List roles</h3>
+<hr/>
+<div class="row-fluid">
+        <div class="span8">
+		<table class="table table-bordered">
+		  <tr>
+		    <th>Sr. No.</th>
+		    <th>Role name</th>
+		    <th>Role description</th>
+		    <th>Is active</th>
+		    <th>Action</th>
+		  </tr>
+		<% @count = 0 %>
+		<% @roles.each do |role| %>
+		  <tr>
+		    <td><%= @count += 1 %></td>
+		    <td><%= role.role_name %></td>
+		    <td><%= role.role_description %></td>
+		    <td><%= role.is_active %></td>
+		    <td><%#= link_to 'Show', role %>
+		    <% if has_permission('roles', 'edit') %>
+		    <%= link_to 'Edit', edit_role_path(role) %>
+		    <% end %>
+		    <% if has_permission('roles', 'destroy') %>
+		    <%= link_to 'Destroy', role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		    <% end %>
+		  </tr>
+		<% end %>
+		</table>
+		<br/>
+		<% if has_permission('roles', 'new') %>
+			<%= link_to 'New Role', new_role_path, :class => "btn btn-primary" %>
+		<% end %>
+		<%= link_to 'Back', dashboards_path, :class => "btn" %>
+	</div>
+	<div class="span4">
+	</div>
+</div>

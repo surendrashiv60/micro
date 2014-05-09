@@ -1,0 +1,10 @@
+class ComposeEmail < ActionMailer::Base
+  default from: "info@techschema.com"
+  def compose_sms_def(to, subject, message, file_name)
+    @message = message
+    if file_name
+      attachments["#{file_name}"] = File.read("#{Rails.root}/public/upload/#{file_name}")
+    end
+    mail(:to => to, :subject => subject)  
+  end  
+end

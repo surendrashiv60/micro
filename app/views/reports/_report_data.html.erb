@@ -1,0 +1,23 @@
+<table class="table table-bordered" style="width: 60%;">
+	<tr>
+		<th>Sr. No.</th>
+		<th>Name</th>
+		<th>Contact No.</th>
+		<th>Status</th>
+	</tr>
+	<% @count = 0 %>
+	<% if @contacts.blank? %>
+		<tr>
+			<td colspan="4"><center>No data available.</center></td>
+		</tr>
+	<% else%>
+		<% @contacts.each do |contact| %>
+		<tr>
+			<td><%= @count = @count + 1 %></td>
+			<td><%= contact.name %></td>
+			<td><%= contact.contact_no %></td>
+			<td><%= contact.status %></td>
+		</tr>
+		<% end %>
+	<% end %>
+</table>

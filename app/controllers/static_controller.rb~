@@ -1,0 +1,8 @@
+class StaticController < ApplicationController
+  def index
+  end
+  def about_us_sas
+  end
+  def contact_us
+  end
+end

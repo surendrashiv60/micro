@@ -1,0 +1,158 @@
+<%= form_for(@reminder) do |f| %>
+  <% if @reminder.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reminder.errors.count, "error") %> prohibited this remider from being saved:</h2>
+
+      <ul>
+      <% @reminder.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="span6">
+	  <table>
+	  	<tr>
+			<td><%= f.label :title %></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= f.text_field :title %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :description %></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= f.text_area :description, :rows => 3, :cols => 30 %></td>
+		</tr>
+		<tr style="background-color: #efefef;">
+			<td style="padding: 5px;"><%= f.label :contact_group %></td>
+			<td style="padding: 5px;">&nbsp;&nbsp;</td>
+			<td style="padding: 5px;"><%= f.select "contact_group_id", options_from_collection_for_select(@contact_groups, "id", "contact_group_name", @reminder.contact_group_id), :prompt => "Select" %></td>
+	    	</tr>
+		<tr style="background-color: #efefef;">
+			<td></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><b>OR</b></td>
+		</tr>
+		<tr style="background-color: #efefef;">
+			<td style="padding: 5px;"><%= label_tag :contact_no %></td>
+			<td style="padding: 5px;">&nbsp;&nbsp;</td>
+			<td style="padding: 5px;"><%= text_field_tag :contact_no %>&nbsp;&nbsp;<a href="#" class="add_contact"><i class="fa fa-plus-circle"></i>&nbsp;Add</a></td>
+		</tr>
+	 	<tr>
+			<td><%= f.label :at_time %></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= f.time_select :at_time %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :message %></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= f.text_area :message, :rows => 3, :cols => 30 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :recurrence %></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= f.select(:recurrence, options_for_select([["Never", "Never"], ["Every_day", "Every_day"], ["Week", "Week"], ["Month", "Month"], ["Year", "Year"]], [@reminder.recurrence])) %></td>
+		</tr>
+		<tr class="at_date_tr">
+			<td><%= f.label :at_date %></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= f.date_select :at_date %></td>
+		</tr>
+	 	<tr>
+			<td></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= f.submit "Submit", :class => "btn btn-primary" %>&nbsp;&nbsp;
+			    	<%= link_to 'Back', reminders_path, :class => "btn" %>
+			</td>
+		</tr>
+	   </table>
+   </div>
+   <div class="span5">
+	<p>If contact group changes then contact list will refresh with new data.</p>
+	<div id="contact_list">
+		<table class='table table-striped  contact_number_tbl'>
+		<% if @schedule_contacts %>
+			<% @schedule_contacts.each do |schedule_contact| %>
+			<tr>
+				<td><%= schedule_contact.name %></td>
+				<td style='text-align: right;'><%= schedule_contact.contact_no %>
+					<input type='hidden' name='contact_number_list[]' value='<%= schedule_contact.contact_no %>'/>
+					<input type='hidden' name='contact_number_name_list[]' value='<%= schedule_contact.name %>'/>
+				</td>
+				<td style='text-align: center'>
+					<div class='remove_contact'><i class='fa fa-trash-o'></i></div>
+				</td>
+			</tr>
+			<% end %>
+		<% end %>
+		</table>
+	</div>
+   </div>
+<% end %>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		/* change of contact group */
+		$("#reminder_contact_group_id").on("change", function(){
+			$contact_group_id = $(this).val();
+			if ($contact_group_id != '') {
+				 $.ajax({    
+			    		url: '/compose_sms/load_contact',
+			    		type:'GET',
+			    		dataType: 'json',
+			    		data: {
+				    		id: $contact_group_id
+			    		},
+			    		success: function(data) {
+						if(data == "" || data == null)
+						{
+							$('#contact_list').html("").append('No contacts found.');
+						}
+						else
+						{
+							$('#contact_list').html("");
+							$('#contact_list').append("<table class='table table-striped  contact_number_tbl'></table>");
+							$.each(data, function(i, field){
+							      $(".contact_number_tbl").append("<tr><td>"+field.name+"</td><td style='text-align: right;'>"+field.contact_no+"<input type='hidden' name='contact_number_list[]' value='"+field.contact_no+"'/><input type='hidden' name='contact_number_name_list[]' value='"+field.name+"'/></td><td style='text-align: center'><div class='remove_contact'><i class='fa fa-trash-o'></i></div></td></tr>");
+							});
+						}
+					}
+				 });
+			}
+		});
+		
+		/* remove contact */
+		$("body").on("click", '.remove_contact', function(){
+			$(this).closest('tr').remove();
+		});
+
+		/* contact add from textbox contact */
+		$(".add_contact").on("click", function(){
+			$contact_no = $("#contact_no").val();
+			if($('.contact_number_tbl').length) 
+			{
+				$(".contact_number_tbl").append("<tr><td>Unknown</td><td style='text-align: right;'>"+$contact_no+"<input type='hidden' name='contact_number_list[]' value='"+$contact_no+"'/><input type='hidden' name='contact_number_name_list[]' value='Unknown'/></td><td style='text-align: center'><div class='remove_contact'><i class='fa fa-trash-o'></i></div></td></tr>");
+			}
+			else
+			{
+				$('#contact_list').html("");
+				$('#contact_list').append("<table class='table table-striped  contact_number_tbl'></table>");
+				$(".contact_number_tbl").append("<tr><td>Unknown</td><td style='text-align: right;'>"+$contact_no+"<input type='hidden' name='contact_number_list[]' value='"+$contact_no+"'/><input type='hidden' name='contact_number_name_list[]' value='Unknown'/></td><td style='text-align: center'><div class='remove_contact'><i class='fa fa-trash-o'></i></div></td></tr>");
+			}
+		});
+
+		/* on change of recurrence other than "Never" */
+		$("#reminder_recurrence").on("change", function(){
+			if($(this).val() != "Never")
+				$(".at_date_tr select").prop("disabled", true);
+			else
+				$(".at_date_tr select").prop("disabled", false);
+		});
+
+		
+		if($("#reminder_recurrence").val() != "Never")
+			$(".at_date_tr select").prop("disabled", true);
+		else
+			$(".at_date_tr select").prop("disabled", false);
+		
+	});
+</script>

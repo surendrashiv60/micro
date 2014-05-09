@@ -1,0 +1,3 @@
+<h3><i class="fa fa-font"></i>&nbsp;New contact</h3>
+<hr/>
+<%= render 'form' %>

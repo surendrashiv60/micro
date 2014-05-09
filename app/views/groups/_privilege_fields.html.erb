@@ -1,0 +1,29 @@
+<% @system_modules.each do |system_module| %>
+	<%= system_module.system_module_name %>
+	<% system_module.privileges.each do |privilege| %>
+		<% @flag = false %>
+		<% if action_name == "edit" %>
+			<% @group_privileges.each do |group_privilege|
+				if group_privilege.id == privilege.id
+					@flag = true
+					break
+				else
+					@flag = false
+				end
+			end %>
+		<% end %>
+
+		<% if @flag %>
+		<label class="checkbox">
+			<%= check_box_tag 'privilege_ids[]', privilege.id , :checked => "checked" %>
+			<%= h privilege.privilege_name %>
+		</label>
+		<% else %>
+		<label class="checkbox">
+			<%= check_box_tag 'privilege_ids[]', privilege.id %>
+			<%= h privilege.privilege_name %>
+		</label>
+		<% end %>
+	<% end %>
+	<br/>
+<% end %>

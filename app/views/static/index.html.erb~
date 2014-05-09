@@ -1,0 +1,42 @@
+<h3>&nbsp;Welcome to Micro BPO</h3>
+<hr/>
+<p>
+<div style="width: 960px; height: 350px; margin: 0px auto;">
+	<div class="slideshow"> 
+	    <%= image_tag("1.jpg") %>
+	    <%= image_tag("2.jpg") %>
+	    <%= image_tag("3.jpg") %>
+	</div>
+</div>
+<div style="width: 960px; margin: 0px auto;">
+		<h3>Micro BPO</h3>
+		<ul style="margin-left: 20px;">
+			<li>We can now segregate your customer database into Past customers, Present
+customers and potential customers or Enquiries. </li>
+			<li>For Past Customers, You may send periodic ( monthly )
+renewal option, discount offers, One time offers, New Upgrades or service or
+product, competitive analysis, case studies using an Email Newsletter or a printed
+Direct mailer. You could also send SMS with offers.
+</li>
+			<li>You pay Less to get the System Implemented: it’s much cheaper, almost
+80-90% cheaper if we do it for you.
+</li>
+			<li>Your dependency on your staff is ZERO, our system will work for you.
+be it a Telephone call follow-up, Email sending, reminder SMS or direct
+mailer posting. Everything will be done for you on specified dates.
+</li>
+		</ul>
+	</div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.slideshow').cycle({
+		fx: 'fade'
+	});
+});
+</script>
+<style>
+	.slideshow img{
+		height: 350px;
+	}
+</style>
+</p>

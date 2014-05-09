@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @remider.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @remider.description %>
+</p>
+
+<p>
+  <b>At time:</b>
+  <%= @remider.at_time %>
+</p>
+
+<p>
+  <b>At date:</b>
+  <%= @remider.at_date %>
+</p>
+
+<p>
+  <b>Message:</b>
+  <%= @remider.message %>
+</p>
+
+<p>
+  <b>Recurrence:</b>
+  <%= @remider.recurrence %>
+</p>
+
+
+<%= link_to 'Edit', edit_remider_path(@remider) %> |
+<%= link_to 'Back', remiders_path %>

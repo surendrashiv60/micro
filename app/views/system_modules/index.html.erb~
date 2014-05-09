@@ -1,0 +1,38 @@
+<h3><i class="fa fa-cogs"></i>&nbsp;System modules</h3>
+<hr/>
+<div class="row-fluid">
+        <div class="span8">
+		<table class="table table-bordered">
+		  <tr>
+		    <th>System module name</th>
+		    <th>System module description</th>
+		    <th>System module order</th>
+		    <th>Is active</th>
+		    <th>Action</th>
+		  </tr>
+		<% @count = 0 %>
+		<% @system_modules.each do |system_module| %>
+		  <tr>
+		    <td><%= system_module.system_module_name %></td>
+		    <td><%= system_module.system_module_description %></td>
+		    <td><%= system_module.system_module_order %></td>
+		    <td><%= system_module.is_active %></td>
+		    <td><%#= link_to 'Show', system_module %>
+		    <% if has_permission('system_modules', 'edit') %>
+		    	<%= link_to 'Edit', edit_system_module_path(system_module) %>
+		    <% end %>
+		    <% if has_permission('system_modules', 'destroy') %>
+		    	<%= link_to 'Destroy', system_module, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		    <% end %>
+		  </tr>
+		<% end %>
+	        </table>
+		<br />
+		<% if has_permission('system_modules', 'new') %>
+		<%= link_to 'New System module', new_system_module_path, :class => "btn btn-primary"  %>
+		<% end %>
+		<%= link_to 'Back', dashboards_path, :class => "btn" %>
+	 </div>
+	 <div class="span4">
+	 </div>
+</div>

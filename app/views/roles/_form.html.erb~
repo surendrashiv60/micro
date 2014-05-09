@@ -1,0 +1,45 @@
+<%= form_for(@role) do |f| %>
+  <% if @role.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@role.errors.count, "error") %> prohibited this role from being saved:</h2>
+
+      <ul>
+      <% @role.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+	<tr>
+		<td><%= f.label :role_name %></td>
+		<td>&nbsp;&nbsp;</td>
+		<td><%= f.text_field :role_name %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :role_description %></td>
+		<td>&nbsp;&nbsp;</td>
+		<td><%= f.text_area :role_description, :rows => 3, :cols => 30  %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :groups %></td>
+		<td>&nbsp;&nbsp;</td>
+		<td>
+			<%= f.fields_for :groups  do |group| %>
+				<%= render "group_fields", :f => group %>
+			<% end %>
+		</td>
+	</tr>
+	<tr>
+		<td><%= f.label :is_active %></td>
+		<td>&nbsp;&nbsp;</td>
+		<td><%= f.check_box :is_active %></td>
+	</tr>
+ 	<tr>
+		<td></td>
+		<td>&nbsp;&nbsp;</td>
+		<td><%= f.submit "Create", :class => "btn btn-primary" %>&nbsp;&nbsp;<%= link_to 'Back', roles_path, :class => "btn" %></td>
+	</tr>
+  </table>
+<% end %>

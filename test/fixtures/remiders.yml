@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  description: MyText
+  at_time: 2014-04-25 11:41:33
+  at_date: 2014-04-25
+  message: MyText
+  recurrence: MyString
+
+two:
+  title: MyString
+  description: MyText
+  at_time: 2014-04-25 11:41:33
+  at_date: 2014-04-25
+  message: MyText
+  recurrence: MyString

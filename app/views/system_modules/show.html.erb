@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>System module name:</b>
+  <%= @system_module.system_module_name %>
+</p>
+
+<p>
+  <b>System module description:</b>
+  <%= @system_module.system_module_description %>
+</p>
+
+<p>
+  <b>System module order:</b>
+  <%= @system_module.system_module_order %>
+</p>
+
+<p>
+  <b>Is active:</b>
+  <%= @system_module.is_active %>
+</p>
+
+
+<%= link_to 'Edit', edit_system_module_path(@system_module) %> |
+<%= link_to 'Back', system_modules_path %>

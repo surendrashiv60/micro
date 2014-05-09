@@ -1,0 +1,35 @@
+// Place all the styles related to the auths controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* modal box */
+.modalbox {
+  -webkit-background-clip: padding-box;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.29688) 0px 3px 7px;
+  background-clip: padding-box;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.29688);
+  border-bottom-left-radius: 6px 6px;
+  border-bottom-right-radius: 6px 6px;
+  border-top-left-radius: 6px 6px;
+  border-top-right-radius: 6px 6px;
+  margin: 0px auto;
+  outline: none;
+  width: 560px;
+}
+
+.modalbox-footer {
+  -webkit-box-shadow: white 0px 1px 0px inset;
+  background-color: whiteSmoke;
+  border-bottom-left-radius: 6px 6px;
+  border-bottom-left-radius: 6px 6px;
+  border-bottom-right-radius: 6px 6px;
+  border-bottom-right-radius: 6px 6px;
+  border-top: 1px solid #DDD;
+  border-top-left-radius: 0px 0px;
+  border-top-left-radius: 0px 0px;
+  border-top-right-radius: 0px 0px;
+  border-top-right-radius: 0px 0px;
+  margin-bottom: 0px;
+  padding: 14px 15px 15px;
+}

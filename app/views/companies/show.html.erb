@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Company name:</b>
+  <%= @company.company_name %>
+</p>
+
+<p>
+  <b>Company address:</b>
+  <%= @company.company_address %>
+</p>
+
+<p>
+  <b>Contact person:</b>
+  <%= @company.contact_person %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @company.email %>
+</p>
+
+<p>
+  <b>Application due date:</b>
+  <%= @company.application_due_date %>
+</p>
+
+<p>
+  <b>No of contact:</b>
+  <%= @company.no_of_contact %>
+</p>
+
+<p>
+  <b>Is active:</b>
+  <%= @company.is_active %>
+</p>
+
+
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>

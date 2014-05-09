@@ -1,0 +1,3 @@
+<h3><i class="fa fa-male"></i>&nbsp;New group</h3>
+<hr/>
+<%= render 'form' %>

@@ -1,0 +1,35 @@
+<%= form_for(@contact_group) do |f| %>
+  <% if @contact_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contact_group.errors.count, "error") %> prohibited this contact_group from being saved:</h2>
+
+      <ul>
+      <% @contact_group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+    <tr>
+	<td><%= f.label :contact_group_name %></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.text_field :contact_group_name %></td>
+    </tr>
+    <tr>
+	<td><%= f.label :contact_group_description %></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.text_area :contact_group_description, :rows => 3, :cols => 30 %></td>
+    </tr>
+    <tr>
+	<td><%= f.label :is_active %></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.check_box :is_active %></td>
+    </tr>
+    <tr>
+	<td></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.submit "Submit", :class => "btn btn-primary" %>&nbsp;&nbsp;<%= link_to 'Back', contact_groups_path, :class => "btn" %></td>
+    </tr>
+  </table>
+<% end %>

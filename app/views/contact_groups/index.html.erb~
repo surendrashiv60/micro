@@ -1,0 +1,39 @@
+<h3><i class="fa fa-sort-alpha-asc"></i>&nbsp;List contact group</h3>
+<hr/>
+<div class="row-fluid">
+        <div class="span8">
+		<table class="table table-bordered">
+		  <tr>
+		    <th>Sr. No.</th>
+		    <th>Contact group name</th>
+		    <th>Contact group description</th>
+		    <th>Is active</th>
+		    <th>Action</th>
+		  </tr>
+		  <% @count = 0 %>
+		  <% @contact_groups.each do |contact_group| %>
+		    <tr>
+		      <td><%= @count += 1 %></td>
+		      <td><%= contact_group.contact_group_name %></td>
+		      <td><%= contact_group.contact_group_description %></td>
+		      <td><%= contact_group.is_active %></td>
+		      <td><%#= link_to 'Show', company %>
+		      <% if has_permission('contact_groups', 'edit') %>
+		      	<%= link_to 'Edit', edit_contact_group_path(contact_group) %>
+		      <% end %>
+		      <% if has_permission('contact_groups', 'destroy') %>
+		      	<%= link_to 'Destroy', contact_group, method: :delete, data: { confirm: 'Are you sure?' } %>
+		      <% end %>
+		    </tr>
+		  <% end %>
+		  </table>
+		  <br />
+		  <% if has_permission('contact_groups', 'new') %>
+		  	<%= link_to 'New contact group', new_contact_group_path, :class => "btn btn-primary" %>
+		  <% end %>
+		  <%= link_to 'Back', dashboards_path, :class => "btn" %>
+	  </div>
+	  <div class="span4">
+	  </div>
+</div>
+

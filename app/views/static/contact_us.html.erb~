@@ -1,0 +1,47 @@
+<h3><i class="fa fa-map-marker"></i>&nbsp;Contact us</h3>
+<hr/>
+<div class="row-fluid">
+	<div class="span4">
+		<h4>Feedback</h4>
+		<%= form_tag(compose_email_create_path, :method => :post) %>
+		<table>
+		    <tr>
+			<td><%= label_tag :name %></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= text_field_tag :name %></td>
+		    </tr>
+		    <tr>
+			<td><%= label_tag :contact_no %></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= text_field_tag :contact_no %></td>
+		    </tr>
+		    <tr>
+			<td><%= label_tag :email %></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= text_field_tag :email %></td>
+		    </tr>
+		     <tr>
+			<td><%= label_tag :message %></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= text_area_tag :message %></td>
+		    </tr>
+		    <tr>
+			<td></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= submit_tag "Send", :class => "btn btn-primary" %>&nbsp;&nbsp;<%= link_to 'Back', dashboards_path, :class => "btn" %></td>
+		    </tr>
+		</table>
+	</div>
+	<div class="span8">
+		<h5>Project By</h5>
+		<ul>
+			<li>Shivnarayan Rajput</li>
+			<li>Hariprabhu Paramanathan</li>
+			<li>Vaibhav Patil</li>
+		</ul>
+		<h5>Guided By</h5>
+		Prof. Sumit Battachraya
+	</div>
+</div>
+
+

@@ -1,0 +1,44 @@
+<%= form_for(@group) do |f| %>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+    <tr>
+	<td><%= f.label :group_name %></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.text_field :group_name %></td>
+    </tr>
+    <tr>
+	<td><%= f.label :group_description %></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.text_area :group_description, :rows => 3, :cols => 30 %></td>
+    </tr>
+    <tr>
+	<td><%= f.label :is_active %></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.check_box :is_active %></td>
+    </tr>
+    <tr>
+	<td><%= f.label :privileges %></td>
+	<td>&nbsp;&nbsp;</td>
+	<td>
+		<%#= f.fields_for :privileges  do |privilege| %>
+			<%= render "privilege_fields" %>
+		<%# end %>
+	</td>
+    </tr>
+    <tr>
+	<td></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.submit "Submit", :class => "btn btn-primary" %>&nbsp;&nbsp;<%= link_to 'Back', groups_path, :class => "btn" %></td>
+    </tr>
+  </table>
+<% end %>

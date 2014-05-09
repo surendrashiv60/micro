@@ -1,0 +1,5 @@
+<h3><i class="fa fa-check-square-o"></i>&nbsp;New privilege</h3>
+<hr/>
+<%= render 'form' %>
+
+<%= link_to 'Back', privileges_path %>

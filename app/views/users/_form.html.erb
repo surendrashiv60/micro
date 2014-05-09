@@ -1,0 +1,67 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+  	<tr>
+		<td><%= f.label :username %></td>
+		<td>&nbsp;&nbsp;</td>
+		<td><%= f.text_field :username %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :password %></td>
+		<td>&nbsp;&nbsp;</td>
+		<td><%= f.password_field :password %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :password_confirmation %></td>
+		<td>&nbsp;&nbsp;</td>
+		<td><%= f.password_field :password_confirmation %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :gender %></td>
+		<td>&nbsp;&nbsp;</td>
+		<td><%= f.select(:gender, options_for_select([["Male", "Male"], ["Female", "Female"]], [@user.gender])) %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :contact_no %></td>
+		<td>&nbsp;&nbsp;</td>
+		<td><%= f.text_field :contact_no %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :address %></td>
+		<td>&nbsp;&nbsp;</td>
+		<td><%= f.text_area :address, :rows => 3, :cols => 30 %></td>
+	</tr>
+	<tr>
+		<td><%= f.label :roles %></td>
+		<td>&nbsp;&nbsp;</td>
+		<td>
+			<%= f.fields_for :roles  do |role| %>
+				<%= render "role_fields", :f => role %>
+			<% end %>
+		</td>
+	</tr>
+	<tr>
+		<td><%= f.label :is_active %></td>
+		<td>&nbsp;&nbsp;</td>
+		<td><%= f.check_box :is_active %></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>&nbsp;&nbsp;</td>
+		<td><%= f.submit "Submit", :class => "btn btn-primary" %>&nbsp;&nbsp;
+		    	<%= link_to 'Back', users_path, :class => "btn" %>
+		</td>
+	</tr>
+  </table>
+<% end %>

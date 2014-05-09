@@ -1,0 +1,24 @@
+<h3><i class="fa fa-bar-chart-o"></i>&nbsp;Graph</h3>
+<hr/>
+<%= form_tag(graphs_show_path, :method => :get) %>
+<table>
+	<tr>
+		<td><%= label_tag :reminder_id %></td>
+		<td>&nbsp;&nbsp;</td>
+		<td><%= select_tag "reminder_id", options_from_collection_for_select(@reminders, "id", "title"), :prompt => "Select" %></td>
+    	</tr>
+	<tr>
+		<td></td>
+		<td>&nbsp;&nbsp;</td>
+		<td><%= submit_tag "Submit", :class => "btn btn-primary" %>&nbsp;&nbsp;<%= link_to 'Back', dashboards_path, :class => "btn" %></td>
+    	</tr>
+	<tr>
+		<td></td>
+		<td>&nbsp;&nbsp;</td>
+		<td></td>
+    	</tr>
+</table>
+<div id="report_contact_data">
+	<%= render 'graph_data', :collection => @contacts %>
+</div>
+

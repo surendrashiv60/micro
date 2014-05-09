@@ -1,0 +1,34 @@
+<h3><i class="fa fa-file-text"></i>&nbsp;List sms template</h3>
+<hr/>
+<div class="row-fluid">
+        <div class="span8">
+		<table class="table table-bordered">
+		  <tr>
+		    <th>Sr. No.</th>
+		    <th>Message</th>
+		    <th>Action</th>
+		  </tr>
+		<% @count = 0 %>
+		<% @sms_templates.each do |sms_template| %>
+		  <tr>
+		    <td><%= @count += 1 %></td>
+		    <td><%= sms_template.message %></td>
+		    <td>
+		    <% if has_permission('sms_templates', 'edit') %>
+		    	<%= link_to 'Edit', edit_sms_template_path(sms_template) %>
+		    <% end %>
+		    <% if has_permission('sms_templates', 'destroy') %>
+		    	<%= link_to 'Destroy', sms_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		    <% end %>
+		  </tr>
+		<% end %>
+		</table>
+		<br/>
+		<% if has_permission('sms_templates', 'new') %>
+			<%= link_to 'New sms template', new_sms_template_path, :class => "btn btn-primary" %>
+		<% end %>
+		<%= link_to 'Back', dashboards_path, :class => "btn" %>
+	</div>
+	<div class="span4">
+	</div>
+</div>

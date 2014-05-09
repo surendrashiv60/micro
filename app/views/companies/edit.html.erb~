@@ -1,0 +1,4 @@
+<h3><i class="fa fa-building-o"></i>&nbsp;Edit company</h3>
+<hr/>
+<%= render 'form' %>
+<%#= link_to 'Show', @company %>

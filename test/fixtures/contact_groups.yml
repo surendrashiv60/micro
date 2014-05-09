@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  contact_group_name: MyString
+  contact_group_description: MyText
+  is_active: false
+
+two:
+  contact_group_name: MyString
+  contact_group_description: MyText
+  is_active: false

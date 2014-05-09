@@ -1,0 +1,44 @@
+<h3><i class="fa fa-font"></i>&nbsp;List contacts</h3>
+<hr/>
+<div class="row-fluid">
+        <div class="span8">
+		<table class="table table-bordered">
+		  <tr>
+		    <th>Sr. No.</th>
+		    <th>Name</th>
+		    <th>Email</th>
+		    <th>Contact no</th>
+		    <th>Date of birth</th>
+		    <th>Address</th>
+		    <th>Contact group</th>
+		    <th>Action</th>
+		  </tr>
+		  <% @count = 0 %>
+		  <% @contacts.each do |contact| %>
+		    <tr>
+		      <td><%= @count += 1 %></td>
+		      <td><%= contact.name %></td>
+		      <td><%= contact.email %></td>
+		      <td><%= contact.contact_no %></td>
+		      <td><%= contact.date_of_birth %></td>
+		      <td><%= contact.address %></td>
+		      <td><%= contact.contact_group.contact_group_name %></td>
+		      <td><%#= link_to 'Show', company %>
+		      <% if has_permission('contacts', 'edit') %>
+		      	<%= link_to 'Edit', edit_contact_path(contact) %>
+		      <% end %>
+		      <% if has_permission('contacts', 'destroy') %>
+		      	<%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %>
+		      <% end %>
+		    </tr>
+		  <% end %>
+		  </table>
+		  <br />
+		  <% if has_permission('contacts', 'new') %>
+		  	<%= link_to 'New contact', new_contact_path, :class => "btn btn-primary" %>
+		  <% end %>
+		  <%= link_to 'Back', dashboards_path, :class => "btn" %>
+	  </div>
+	  <div class="span4">
+	  </div>
+</div>

@@ -1,0 +1,44 @@
+<h3><i class="fa fa-check-square-o"></i>&nbsp;List privileges</h3>
+<hr/>
+<div class="row-fluid">
+        <div class="span8">
+		<table class="table table-bordered">
+		  <tr>
+		    <th>Sr. No.</th>
+		    <th>Privilege name</th>
+		    <th>Privilege description</th>
+		    <th>Controller</th>
+		    <th>Action</th>
+		    <th>System module</th>
+		    <th>Is active</th>
+		    <th>Action</th>
+		  </tr>
+		<% @count = 0 %>
+		<% @privileges.each do |privilege| %>
+		  <tr>
+		    <td><%= @count += 1 %></td>
+		    <td><%= privilege.privilege_name %></td>
+		    <td><%= privilege.privilege_description %></td>
+		    <td><%= privilege.controller %></td>
+		    <td><%= privilege.action %></td>
+		    <td><%= privilege.is_active %></td>
+		    <td><%= privilege.system_module.system_module_name %></td>
+		    <td><%#= link_to 'Show', privilege %>
+		    <% if has_permission('privileges', 'edit') %>
+		    	<%= link_to 'Edit', edit_privilege_path(privilege) %>
+		    <% end %>
+		    <% if has_permission('privileges', 'destroy') %>
+		    	<%= link_to 'Destroy', privilege, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		    <% end %>
+		  </tr>
+		<% end %>
+		</table>
+		<br />
+		<% if has_permission('privileges', 'new') %>
+			<%= link_to 'New Privilege', new_privilege_path, :class => "btn btn-primary" %>
+		<% end %>
+		<%= link_to 'Back', dashboards_path, :class => "btn" %>
+	</div>
+	<div class="span4">
+	</div>
+</div>

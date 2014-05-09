@@ -1,0 +1,39 @@
+<h3><i class="fa fa-building-o"></i>&nbsp;List companies</h3>
+<hr/>
+<div class="row-fluid">
+        <div class="span8">
+		<table class="table table-bordered">
+		  <tr>
+		    <th>Sr. No.</th>
+		    <th>Company name</th>
+		    <th>Company address</th>
+		    <th>Contact person</th>
+		    <th>Email</th>
+		    <th>Application due date</th>
+		    <th>No of contact</th>
+		    <th>Is active</th>
+		    <th>Action</th>
+		  </tr>
+		  <% @count = 0 %>
+		  <% @companies.each do |company| %>
+		    <tr>
+		      <td><%= @count += 1 %></td>
+		      <td><%= company.company_name %></td>
+		      <td><%= company.company_address %></td>
+		      <td><%= company.contact_person %></td>
+		      <td><%= company.email %></td>
+		      <td><%= company.application_due_date %></td>
+		      <td><%= company.no_of_contact %></td>
+		      <td><%= company.is_active %></td>
+		      <td><%#= link_to 'Show', company %>
+		      <%= link_to 'Edit', edit_company_path(company) %>
+		      <%= link_to 'Destroy', company, method: :delete, data: { confirm: 'Are you sure?' } %>
+		    </tr>
+		  <% end %>
+		  </table>
+		  <br />
+		  <%= link_to 'New company', new_company_path, :class => "btn btn-primary" %>
+	  </div>
+	  <div class="span4">
+	  </div>
+</div>

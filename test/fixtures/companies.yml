@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  company_name: MyString
+  company_address: MyText
+  contact_person: MyString
+  email: MyString
+  application_due_date: 2014-04-12
+  no_of_contact: 1
+  is_active: false
+
+two:
+  company_name: MyString
+  company_address: MyText
+  contact_person: MyString
+  email: MyString
+  application_due_date: 2014-04-12
+  no_of_contact: 1
+  is_active: false

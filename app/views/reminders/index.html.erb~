@@ -1,0 +1,44 @@
+<h3><i class="fa fa-clock-o"></i>&nbsp;List reminder</h3>
+<hr/>
+<div class="row-fluid">
+        <div class="span8">
+		<table class="table table-bordered">
+		  <tr>
+		    <th>Sr. No.</th>
+		    <th>Title</th>
+		    <th>Description</th>
+		    <th>At time</th>
+		    <th>At date</th>
+		    <th>Message</th>
+		    <th>Recurrence</th>
+		    <th>Action</th>
+		  </tr>
+		<% @count = 0 %>
+		<% @reminders.each do |reminder| %>
+		  <tr>
+		    <td><%= @count += 1 %></td>
+		    <td><%= reminder.title %></td>
+		    <td><%= reminder.description %></td>
+		    <td><%= reminder.at_time.strftime("%I:%M %p") %></td>
+		    <td><%= reminder.at_date %></td>
+		    <td><%= reminder.message %></td>
+		    <td><%= reminder.recurrence %></td>
+		    <td>
+		    <% if has_permission('set_reminders', 'edit') %>
+		    	<%= link_to 'Edit', edit_reminder_path(reminder) %>
+		    <% end %>
+		    <% if has_permission('set_reminders', 'destroy') %>
+		    	<%= link_to 'Destroy', reminder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		    <% end %>
+		  </tr>
+		<% end %>
+		</table>
+		<br/>
+		<% if has_permission('set_reminders', 'new') %>
+			<%= link_to 'New reminder', new_reminder_path, :class => "btn btn-primary" %>
+		<% end %>
+		<%= link_to 'Back', dashboards_path, :class => "btn" %>
+	</div>
+	<div class="span4">
+	</div>
+</div>

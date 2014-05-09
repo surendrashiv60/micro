@@ -1,0 +1,16 @@
+// Place all the styles related to the dashboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.thumbnail{
+	width: 150px; 
+	float: left;
+	margin: 10px;
+	padding-bottom: 5px;
+}
+.thumbnail i{
+	font-size: 55px;
+	padding-bottom: 3px;
+}
+.thumbnail a{
+	font-size: 15px;
+}

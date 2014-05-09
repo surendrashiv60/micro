@@ -1,0 +1,4 @@
+<h3><i class="fa fa-male"></i>&nbsp;New role</h3>
+<hr/>
+<%= render 'form' %>
+

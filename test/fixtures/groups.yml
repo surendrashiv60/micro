@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  group_name: MyString
+  group_description: MyText
+  is_active: false
+
+two:
+  group_name: MyString
+  group_description: MyText
+  is_active: false

@@ -1,0 +1,55 @@
+<%= form_for(@company) do |f| %>
+  <% if @company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+      <% @company.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+    <tr>
+	<td> <%= f.label :company_name %></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.text_field :company_name %></td>
+    </tr>
+    <tr>
+	<td><%= f.label :company_address %></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.text_area :company_address, :rows => 3, :cols => 30 %></td>
+    </tr>
+    <tr>
+	<td><%= f.label :contact_person %></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.text_field :contact_person %></td>
+    </tr>
+    <tr>
+	<td><%= f.label :email %></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.text_field :email %></td>
+    </tr>
+    <tr>
+	<td><%= f.label :application_due_date %></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.date_select :application_due_date %></td>
+    </tr>
+    <tr>
+	<td><%= f.label :no_of_contact %></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.number_field :no_of_contact %></td>
+    </tr>
+    <tr>
+	<td><%= f.label :is_active %></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.check_box :is_active %></td>
+    </tr>
+    <tr>
+	<td></td>
+	<td>&nbsp;&nbsp;</td>
+	<td><%= f.submit "Submit", :class => "btn btn-primary" %>&nbsp;&nbsp;<%= link_to 'Back', companies_path, :class => "btn" %></td>
+    </tr>
+  </table>
+<% end %>

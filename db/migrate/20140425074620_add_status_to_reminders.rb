@@ -1,0 +1,8 @@
+class AddStatusToReminders < ActiveRecord::Migration
+  def up
+	add_column :schedule_contacts, :status, :string
+  end
+   def down
+	remove_column :schedule_contacts, :status
+  end
+end

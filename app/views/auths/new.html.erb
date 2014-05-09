@@ -1,0 +1,25 @@
+<%= form_tag auths_path do %>
+  <div class="modalbox">
+
+    <div class="modal-header">
+      <h3><i class="fa fa-puzzle-piece"></i>&nbsp;&nbsp;Log in</h3>
+    </div>
+
+    <div class="modal-body" style="margin-left: 0px;">
+      <div class="field">
+        <b><%= label_tag :username %></b>
+	<%= text_field_tag :username, params[:username] %>
+      </div>
+      <div class="field">
+        <b><%= label_tag :password %></b>
+	<%= password_field_tag :password %>
+      </div>
+    </div>
+
+    <div class="modalbox-footer">
+      <div class="actions" style="margin: 0px;"><%= submit_tag "Log in", :class => "btn btn-primary" %> <!--or
+      <%#= link_to "Sign up", new_user_path, :class => "" %>--></div>  
+    </div>
+
+  </div>
+<% end %>

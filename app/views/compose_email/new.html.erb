@@ -1,0 +1,100 @@
+<h3><i class="fa fa-pencil-square-o"></i>&nbsp;Compose new mail</h3>
+<hr/>
+<%= form_tag(compose_email_create_path, :method => :post, :multipart => true) %>
+<div class="row-fluid">
+	<div class="span4">
+		<table>
+		    <tr style="background-color: #efefef;">
+			<td><%= label_tag :contact_group %></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= select_tag "contact_group_id", options_from_collection_for_select(@contact_groups, "id", "contact_group_name"), :prompt => "Select" %></td>
+		    </tr>
+		    <tr style="background-color: #efefef;">
+			<td></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><b>OR</b></td>
+		    </tr>
+		    <tr style="background-color: #efefef;">
+			<td style="padding: 5px;"><%= label_tag :contact_email %></td>
+			<td style="padding: 5px;">&nbsp;&nbsp;</td>
+			<td style="padding: 5px;"><%= text_field_tag :contact_email %>&nbsp;&nbsp;<a href="#" class="add_contact"><i class="fa fa-plus-circle"></i>&nbsp;Add</a></td>
+		    </tr>
+		    <tr>
+			<td><%= label_tag :subject %></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= text_field_tag :subject %></td>
+		    </tr>
+		    <tr>
+			<td><%= label_tag :message %></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= text_area_tag :message %></td>
+		    </tr>
+		    <tr>
+			<td><%= label_tag :attachment %></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= file_field_tag :attachment %><br/><i>(Max 25 MB)</i></td>
+		    </tr>
+		    <tr>
+			<td></td>
+			<td>&nbsp;&nbsp;</td>
+			<td><%= submit_tag "Submit", :class => "btn btn-primary" %>&nbsp;&nbsp;<%= link_to 'Back', dashboards_path, :class => "btn" %></td>
+		    </tr>
+		</table>
+	</div>
+	<div class="span8">
+		<div id="contact_list"></div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		/* change of contact group */
+		$("#contact_group_id").on("change", function(){
+			$contact_group_id = $(this).val();
+			if ($contact_group_id != '') {
+				 $.ajax({    
+			    		url: '/compose_sms/load_contact',
+			    		type:'GET',
+			    		dataType: 'json',
+			    		data: {
+				    		id: $contact_group_id
+			    		},
+			    		success: function(data) {
+						if(data == "" || data == null)
+						{
+							$('#contact_list').html("").append('No contacts found.');
+						}
+						else
+						{
+							$('#contact_list').html("");
+							$('#contact_list').append("<table class='table table-striped  contact_number_tbl'></table>");
+							$.each(data, function(i, field){
+							      $(".contact_number_tbl").append("<tr><td>"+field.name+"</td><td style='text-align: right;'>"+field.email+"<input type='hidden' name='contact_email_list[]' value='"+field.email+"'/></td><td style='text-align: center'><div class='remove_contact'><i class='fa fa-trash-o'></i></div></td></tr>");
+							});
+						}
+					}
+				 });
+			}
+		});
+		
+		/* remove contact */
+		$("body").on("click", '.remove_contact', function(){
+			$(this).closest('tr').remove();
+		});
+
+		/* contact email add from textbox contact */
+		$(".add_contact").on("click", function(){
+			$contact_email = $("#contact_email").val();
+			if($('.contact_number_tbl').length) 
+			{
+				$(".contact_number_tbl").append("<tr><td>Unknown</td><td style='text-align: right;'>"+$contact_email+"<input type='hidden' name='contact_email_list[]' value='"+$contact_email+"'/></td><td style='text-align: center'><div class='remove_contact'><i class='fa fa-trash-o'></i></div></td></tr>");
+			}
+			else
+			{
+				$('#contact_list').html("");
+				$('#contact_list').append("<table class='table table-striped  contact_number_tbl'></table>");
+				$(".contact_number_tbl").append("<tr><td>Unkown</td><td style='text-align: right;'>"+$contact_email+"<input type='hidden' name='contact_email_list[]' value='"+$contact_email+"'/></td><td style='text-align: center'><div class='remove_contact'><i class='fa fa-trash-o'></i></div></td></tr>");
+			}
+		});
+	});
+</script>

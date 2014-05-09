@@ -1,0 +1,5 @@
+<h3><i class="fa fa-check-square-o"></i>&nbsp;Edit privilege</h3>
+<hr/>
+<%= render 'form' %>
+<%#= link_to 'Show', @privilege %> |
+

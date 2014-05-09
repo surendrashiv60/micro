@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  privilege_name: MyString
+  privilege_description: MyText
+  controller: MyString
+  action: MyString
+  is_active: false
+
+two:
+  privilege_name: MyString
+  privilege_description: MyText
+  controller: MyString
+  action: MyString
+  is_active: false
